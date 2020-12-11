@@ -11,17 +11,15 @@
     </head>
     <body>
         <div id="container mt-4">
-            <h2 class="text-center">Sensores Json Enviados</h2>
+            <h2 class="text-center">Sensores Enviados</h2>
 
-            <table class="table table-dark">
-                <thead >  
-                    <tr class="bg-danger">
-                        <th id="1"  scope="col">id</th>
-                        <th id="2"  scope="col">marca</th>
-                        <th id="3"  scope="col">humedad</th>
-                        <th id="4"  scope="col">temperatura</th>
-                    </tr>
-                </thead>
+            <table class="table table-dark" id="tabla">
+                <tr class="bg-danger">
+                    <th>id</th>
+                    <th>marca</th>
+                    <th>humedad</th>
+                    <th>temperatura</th>
+                </tr>              
             </table>
         </div>
 
@@ -44,28 +42,11 @@
                     cell.innerHTML = value;
                 }
             }
-
-            var idArr = [];
-
-            var trs = document.getElementsByTagName("th");
-            var mca = document.getElementById("2");
-            for (var i = 0; i < trs.length; i++) // for para ids
-            {
-             for (var m = 0; m < mca.length; m++) {
-                var x = idArr.push(trs[i].id); 
-                var m = idArr.push(mca[m].marca)
-              
-                }
-             
-            }
-            
-
         </script>
         <style>
             table tr {
                 text-align: center;  
             }
-
         </style>
         <a href="http://localhost:8080/Sistema_de_Monitoreo_de_Invernadero_Sensores/Controlador?accion=listar" type="button" class="btn btn-secondary">Atras</a>      
 

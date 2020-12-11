@@ -10,6 +10,19 @@
         <link rel="stylesheet" href="css/menu.css">
     </head>
     <body>
+        <nav class="navbar navbar-dark bg-dark">
+            <a href="http://localhost:8080/Sistema_de_Monitoreo_de_Invernadero_Sensores/" class="navbar-brand">Sistema SMI</a> 
+            <!-- Navbar content -->
+            <ul class="nav justify-content-end">
+                <li class=""><a href="http://">
+                        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-bell-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                        </svg>
+                    </a></li>
+            </ul>
+        </nav>
+
+
         <header class="masthead">
             <div class="container">
                 <div class="row align-items-center">
@@ -20,17 +33,14 @@
                     </div>
 
                     <div class="col-lg-5">
-                        <div class="text-center">
-                            <h4 class="mb-4">Menu Sensores</h4>
-                        </div>
                         <div class="py-5 px-4 masthead-cards">
                             <div class="d-flex">
                                 <a href="http://localhost:8080/Sistema_de_Monitoreo_de_Invernadero_Sensores/Controlador?accion=nuevo" class="w-50 pr-3 pb-4">
                                     <div class="card border-0 border-bottom-red shadow-lg shadow-hover">
                                         <div class="card-body text-center">
                                             <div class="text-center">
-                                                <i class="far fa-plus-square fa-4x my-2"></i>
-                                                <!-- Arreglar icono no se observa -->
+                                                <i class="fa fa-4x fa-plus my-2">
+                                                </i>
                                             </div>
                                             Agregar
                                         </div>
@@ -50,11 +60,11 @@
                             </div>
 
                             <div class="d-flex">
-                                <a href="#" class="w-50 pr-3">
+                                <a href="http://localhost:8080/Sistema_de_Monitoreo_de_Invernadero_Sensores/Controlador?accion=graficar" class="w-50 pr-3">
                                     <div class="card border-0 border-bottom-yellow shadow-lg shadow-hover">
                                         <div class="card-body text-center">
                                             <div class="text-center">
-                                                <i class="fa fa-4x fa-code my-2"></i>
+                                                <i class="fa fa-4x fa-bar-chart my-2"></i>
                                             </div>
                                             Reportes Graficos
                                         </div>
@@ -66,7 +76,7 @@
                                             <div class="text-center">
                                                 <i class="fa fa-4x fa-list my-2"></i>
                                             </div>
-                                            Guides
+                                            Notificaciones
                                         </div>
                                     </div>
                                 </a>

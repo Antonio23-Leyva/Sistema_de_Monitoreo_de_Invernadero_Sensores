@@ -39,11 +39,14 @@
                                 <label>Modelo</label>
                                 <input name="txtModelo" type="text" class="form-control" />
 
-                                <label>Nombre</label>
+                                <label>Marca</label>
                                 <input name="txtNombre" type="text" class="form-control" />
 
                                 <label>Temperatura</label>
                                 <input name="txtTemperatura" type="text" class="form-control" />
+
+                                <label>Fecha</label>
+                                <input name="txtFecha" type="date" class="form-control" id="formatoFecha"/>                            
                             </div>
                         </div>
                         <div class="card-footer">

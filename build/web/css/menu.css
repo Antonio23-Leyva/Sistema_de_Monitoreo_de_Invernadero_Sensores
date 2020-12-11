@@ -1,8 +1,29 @@
 body{
-    background-image: url(../img/circuitos.jpg);
-    image-rendering: auto;
+    text-decoration: none;
 }
 .mb-4, .m-0{
-  color:azure;     
-  font-family: 'Times New Roman', Times, serif;   
+    color:azure;     
+    font-family: 'Times New Roman', Times, serif;   
 }
+
+.card-body:hover {
+    text-decoration:none;
+}
+
+.text-center:hover {
+    text-decoration: none;
+}
+
+.py-5 px-4 masthead-cards:hover{
+    text-decoration: none;
+}
+
+#text{
+    text-decoration: none;
+}
+
+nav > li > a > svg{
+    float:right;
+
+}
+

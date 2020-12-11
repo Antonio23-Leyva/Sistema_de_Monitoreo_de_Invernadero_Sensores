@@ -1,20 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sensores.modeloDAO;
 
 import com.sensores.config.Conexion;
 import com.sensores.modelo.Sensor;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SensorDAO implements InterfazSensorDAO {
-//Sensor[] sArray = gson.fromJson(jsonString, Sensor[].class);
+
+    public SensorDAO() {
+    }
 
     @Override
     public List<Sensor> listar() {
@@ -47,7 +47,6 @@ public class SensorDAO implements InterfazSensorDAO {
         Sensor sensor = new Sensor();
         try {
             PreparedStatement ps = Conexion.Conectar().prepareStatement(sql);
-            // ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 sensor.setId(rs.getInt(1));
@@ -66,7 +65,7 @@ public class SensorDAO implements InterfazSensorDAO {
     @Override
     public int add(Sensor s) {
         int resultado = 0;
-        String sql = "insert into sensores.sensor(id,descripcion,humedad,modelo,nombre,temperatura)values(?,?,?,?,?,?)";
+        String sql = "insert into sensores.sensor(id,descripcion,humedad,modelo,nombre,temperatura,fecha)values(?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = Conexion.Conectar().prepareStatement(sql);
             ps.setString(1, String.valueOf(s.getId()));
@@ -75,6 +74,7 @@ public class SensorDAO implements InterfazSensorDAO {
             ps.setString(4, s.getModelo());
             ps.setString(5, s.getNombre());
             ps.setString(6, s.getTemperatura());
+            ps.setString(7, s.getFecha().toString());
             resultado = ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error en agregar" + e);
@@ -124,29 +124,60 @@ public class SensorDAO implements InterfazSensorDAO {
         try {
             PreparedStatement qe = Conexion.Conectar().prepareCall(consulta);
             ResultSet de = qe.executeQuery();
-
             while (de.next()) {
                 Sensor s = new Sensor();
-                s.setId(de.getInt(1));   // id
-                s.setHumedad(de.getString(3)); // humedad
-                s.setModelo(de.getString(4)); //modelo
-                s.setTemperatura(de.getString(6)); //temperatura
+                s.setId(de.getInt(1));  
+                s.setHumedad(de.getString(3)); 
+                s.setModelo(de.getString(4)); 
+                s.setTemperatura(de.getString(6)); 
                 sensores.add(s);
-// 
-//                sensores.set(1, s);
-//                sensores.get(Integer.parseInt(s.getHumedad()));
-//                sensores.get(Integer.parseInt(s.getModelo()));
-//                sensores.get(Integer.parseInt(s.getTemperatura()));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en enviar " + e);
+        }
+        return sensores;
 
-//                for (int i = 0; i < sensores.size(); i++) {
-//                    System.out.println(sensores.get(i));
-//                }
+    }
+
+    @Override
+    public List<Sensor> ParametrosFecha(Date pr) {
+        List<Sensor> sensores = new ArrayList<>();
+        String query = "SELECT * FROM sensores.sensor WHERE fecha ="+pr;
+        try {
+            PreparedStatement qe = Conexion.Conectar().prepareCall(query);
+            ResultSet de = qe.executeQuery();
+            while (de.next()) {
+                Sensor s = new Sensor();
+                s.setId(de.getInt(1)); 
+                s.setHumedad(de.getString(3)); 
+                s.setModelo(de.getString(4)); 
+                s.setTemperatura(de.getString(6)); 
+                sensores.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en enviar " + e);
+        }
+        return sensores;
+    }
+
+ 
+    @Override
+    public List<Date> ListaFechas() {
+        List<Date> fechas = new ArrayList<>();
+        String query = "SELECT * FROM sensores.sensor";
+        try {
+            PreparedStatement qe = Conexion.Conectar().prepareCall(query);
+            ResultSet de = qe.executeQuery();
+            while (de.next()) {
+                Sensor s = new Sensor();
+                s.setFecha(de.getDate(7));
+                fechas.add(s.getFecha());
             }
         } catch (SQLException e) {
             System.out.println("Error en enviar " + e);
         }
 
-        return sensores;
-
+        return fechas;
     }
+
 }

@@ -5,20 +5,22 @@
             <url>web/SensorSends.jsp</url>
             <bookmark id="1">
                 <name/>
-                <line>69</line>
+                <line>54</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Luis/Documents/NetBeansProjects/CRUD_Sensores/web/nuevo.jsp</file>
-            <file>file:/C:/Users/Luis/Documents/NetBeansProjects/CRUD_Sensores/src/java/com/sensores/modeloDAO/SensorDAO.java</file>
-            <file>file:/C:/Users/Luis/Documents/NetBeansProjects/CRUD_Sensores/web/index.jsp</file>
-            <file>file:/C:/Users/Luis/Documents/NetBeansProjects/CRUD_Sensores/src/java/com/sensores/controlador/Controlador.java</file>
-            <file>file:/C:/Users/Luis/Documents/NetBeansProjects/CRUD_Sensores/web/SensorSends.jsp</file>
-            <file>file:/C:/Users/Luis/Documents/NetBeansProjects/CRUD_Sensores/web/tabla.jsp</file>
-            <file>file:/C:/Users/Luis/Documents/NetBeansProjects/CRUD_Sensores/web/css/menu.css</file>
+            <file>file:/C:/Users/Luis/Desktop/Distribuidos/Sistema_de_Monitoreo_de_Invernadero_Sensores/web/tabla.jsp</file>
+            <file>file:/C:/Users/Luis/Desktop/Distribuidos/Sistema_de_Monitoreo_de_Invernadero_Sensores/web/graficasFiltradas.jsp</file>
+            <file>file:/C:/Users/Luis/Desktop/Distribuidos/Sistema_de_Monitoreo_de_Invernadero_Sensores/web/css/menu.css</file>
+            <file>file:/C:/Users/Luis/Desktop/Distribuidos/Sistema_de_Monitoreo_de_Invernadero_Sensores/src/java/com/sensores/modeloDAO/InterfazSensorDAO.java</file>
+            <file>file:/C:/Users/Luis/Desktop/Distribuidos/Sistema_de_Monitoreo_de_Invernadero_Sensores/web/SensorSends.jsp</file>
+            <file>file:/C:/Users/Luis/Desktop/Distribuidos/Sistema_de_Monitoreo_de_Invernadero_Sensores/web/index.jsp</file>
+            <file>file:/C:/Users/Luis/Desktop/Distribuidos/Sistema_de_Monitoreo_de_Invernadero_Sensores/src/java/com/sensores/modeloDAO/SensorDAO.java</file>
+            <file>file:/C:/Users/Luis/Desktop/Distribuidos/Sistema_de_Monitoreo_de_Invernadero_Sensores/src/java/com/sensores/controlador/Controlador.java</file>
+            <file>file:/C:/Users/Luis/Desktop/Distribuidos/Sistema_de_Monitoreo_de_Invernadero_Sensores/web/editar.jsp</file>
         </group>
     </open-files>
 </project-private>

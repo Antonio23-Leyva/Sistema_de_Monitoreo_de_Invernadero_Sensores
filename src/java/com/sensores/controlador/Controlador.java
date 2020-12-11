@@ -9,23 +9,25 @@ import com.google.gson.Gson;
 import com.sensores.modelo.Sensor;
 import com.sensores.modeloDAO.SensorDAO;
 import java.io.IOException;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Luis
- */
+
 public class Controlador extends HttpServlet {
 
     private final SensorDAO dao = new SensorDAO();
     private List<Sensor> sensores;
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         String accion = request.getParameter("accion");
         Sensor sensor = new Sensor();
         switch (accion) {
@@ -45,12 +47,17 @@ public class Controlador extends HttpServlet {
                 String modelo = request.getParameter("txtModelo");
                 String nombre = request.getParameter("txtNombre");
                 String temperatura = request.getParameter("txtTemperatura");
+                String fecha = request.getParameter("txtFecha");
                 sensor.setId(Integer.parseInt(id));
                 sensor.setDescripcion(descripcion);
                 sensor.setHumedad(humedad);
                 sensor.setModelo(modelo);
                 sensor.setNombre(nombre);
                 sensor.setTemperatura(temperatura + "°C");
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                Date fechaStri = formatter.parse(fecha);
+                java.sql.Date sqlDate = new java.sql.Date(fechaStri.getTime());
+                sensor.setFecha(sqlDate);
                 resultado = dao.add(sensor);
                 if (resultado != 0) {
                     request.setAttribute("config", "alert alert-success");
@@ -60,7 +67,6 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("config", "alert alert-danger");
                     request.setAttribute("mensaje", "ERROR AL INTENTAR GUARDAR DATOS EN BD");
                     request.getRequestDispatcher("mensaje.jsp").forward(request, response);
-
                 }
                 break;
 
@@ -75,7 +81,6 @@ public class Controlador extends HttpServlet {
                 int result = Integer.parseInt(request.getParameter("txtId"));
                 ;
                 int operacion = 0;
-                //String ide = request.getParameter("txtId");
                 String description = request.getParameter("txtDescripcion");
                 String humedadd = request.getParameter("txtHumedad");
                 String modeloo = request.getParameter("txtModelo");
@@ -115,17 +120,13 @@ public class Controlador extends HttpServlet {
                 sensores = dao.sendRequeriments();
                 String json = new Gson().toJson(sensores);
                 request.setAttribute("json", json);
-//                request.startAsync();
                 request.getRequestDispatcher("SensorSends.jsp").forward(request, response);
-                
-                /**
-                 * List<MyObject> list = new ArrayList<MyObject>(); // add some
-                 * objects to the list...
-                 *
-                 * String json = new Gson().toJson(sensores);
-                 * request.setAttribute("sensoress", json);
-                 */
-                break;    
+                break;
+            case "graficar":
+                String inpFechas = request.getParameter("inpFecha");
+                request.setAttribute("fechas", inpFechas);
+                request.getRequestDispatcher("graficasFiltradas.jsp").forward(request, response);
+                break;
             default:
                 request.getRequestDispatcher("Controlador?accion=listar").forward(request, response);
         }
@@ -134,13 +135,21 @@ public class Controlador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
